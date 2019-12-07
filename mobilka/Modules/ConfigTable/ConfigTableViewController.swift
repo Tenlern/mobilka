@@ -66,46 +66,6 @@ class ConfigTableViewController: UITableViewController, ConfigTableDisplayLogic
     private let cellIdentifier = "prototype"
     private let viewModel = ConfigTable.DeviceInfo.ViewModel()
 
-    
-    
-    
-     // MARK: Table View Data Source Methods
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         switch section {
-         case 0:
-             return 4
-         default:
-             return 0
-         }
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-         /*if (cell == nil) {
-             cell = UITableViewCell(
-                 style: .value1,
-                 reuseIdentifier: cellIdentifier)
-         }*/
-        
-        cell?.textLabel?.text = viewModel.keys[indexPath.row]
-        cell?.detailTextLabel?.text = viewModel.info[indexPath.row]
-         return cell!
-     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Device"
-        case 1:
-            return "More"
-        default:
-            return "WTF"
-        }
-    }
 
   // MARK: View lifecycle
   
@@ -132,10 +92,12 @@ class ConfigTableViewController: UITableViewController, ConfigTableDisplayLogic
     
     let transition = SlideTransition()
     
-    
+    @IBOutlet var Details: [UILabel]!
     func displaySomething(viewModel: ConfigTable.DeviceInfo.ViewModel)
   {
-    
+    for i in 0...3 {
+        Details[i].text = viewModel.info[i];
+    }
     //
   }
 }
